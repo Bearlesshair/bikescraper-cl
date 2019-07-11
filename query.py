@@ -1,8 +1,9 @@
 import requests, yaml, progressbar
 from bs4 import BeautifulSoup as bs
 # Homemade Modules
-import config, post
+import config, post, excel
 from smartdelay import delay
+
 
 def do(configpath):
     configDict = config.get(configpath)
@@ -10,8 +11,12 @@ def do(configpath):
     with open('regions.yaml', 'r') as f:
         regions = yaml.safe_load(f)
 
-    for city,nearbyArea in regions.items():
+    storage = {}
+    for city, nearbyArea in regions.items():
         if city in configDict['cities']:
+            storage[city] = []    # save city to storage and create empty list
+
+            # set up request
             url_base = 'http://%s.craigslist.org/d/bicycles/search/bia%s' % (city, nearbyArea)
             params = dict(sort='date', srchType='T', hasPic=1, query=configDict['query'], max_price=configDict['max_price'], min_price=configDict['min_price'])
             headers = {
@@ -21,6 +26,8 @@ def do(configpath):
             "Upgrade-Insecure-Requests": "1",
             "User-Agent": "user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
                        }
+
+            # make request and parse with beautiful soup
             rsp = requests.get(url=url_base, params=params, headers=headers)
             print("Fetching region: %s" % city)
             soup = bs(rsp.text, 'html.parser')
@@ -31,9 +38,10 @@ def do(configpath):
                 link = listing.find('a')['href']
 
                 if post.check(link, configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'], configDict['min_frame'], configDict['max_frame']):
-                    print('Listing: ', title, '\n', 'Price: ', price, '\n', link, '\n' * 2)
+                    storage[city].append(dict(Listing=title, Price=price, Link=link))
                 delay(0.4, 100)
 
             delay(2, 100)
 
     print("Completed search for: ", configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'], configDict['min_frame'], configDict['max_frame'])
+    excel.export(storage)
