@@ -53,11 +53,8 @@ def check(url, titlekeywords, bodykeywords, framesizes, min_frame, max_frame):
     valid = True
     if framesizes is not None or min_frame is not None or max_frame is not None:
         valid *= frameFits(soup, framesizes, min_frame, max_frame)
-        print(valid)
     if titlekeywords is not None:
         valid *= checkTitle(soup, titlekeywords)
-        print(valid)
     if bodykeywords is not None:
         valid *= checkBody(soup, bodykeywords)
-    print(valid)
     return valid

@@ -1,4 +1,4 @@
-import requests, yaml
+import requests, yaml, progressbar
 from bs4 import BeautifulSoup as bs
 # Homemade Modules
 import config, post
@@ -25,7 +25,7 @@ def do(configpath):
             print("Fetching region: %s" % city)
             soup = bs(rsp.text, 'html.parser')
             print(rsp.url)
-            for listing in soup.find_all('li', {'class': 'result-row'}):
+            for listing in progressbar.progressbar(soup.find_all('li', {'class': 'result-row'})):
                 title = listing.find('p').find('a').text
                 price = listing.find('span', {'class': 'result-price'}).text
                 link = listing.find('a')['href']
@@ -35,4 +35,5 @@ def do(configpath):
                 delay(0.4, 100)
 
             delay(2, 100)
-    print(configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'], configDict['min_frame'], configDict['max_frame'])
+
+    print("Completed search for: ", configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'], configDict['min_frame'], configDict['max_frame'])
