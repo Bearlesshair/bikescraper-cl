@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as bs
+from smartdelay import delay
 
 def frameFits(soup, framesizes, min_frame, max_frame):
     # allow for passing when min_frame or max_frame are None
@@ -45,7 +46,16 @@ def check(url, titlekeywords, bodykeywords, framesizes, min_frame, max_frame):
     # fetch posting
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'}
-    rsp = requests.get(url=url, headers=headers)
+
+    while True:
+        try:
+            rsp = requests.get(url=url, headers=headers)
+        except (ConnectionError, ConnectionAbortedError, ConnectionRefusedError, ConnectionResetError) as e:
+            print("Connection error, pausing requests ~10s...")
+            delay(10, 10)
+            continue
+        break
+
     soup = bs(rsp.text, 'html.parser')
 
     # TODO Add AND and OR functionality - Currently is AND
