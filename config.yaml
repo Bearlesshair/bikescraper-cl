@@ -1,14 +1,15 @@
 # Search query
-query: "stumpjumper"
+query: "santa cruz"
 
 # Cities/Regions to query
 cities:
 - eauclaire
 - denver
-- portland
+#- denver
+#- portland
 
 min_price: 1200
-max_price: 2000
+max_price: 4000
 
 # NOT case sensitive - Checks titles for these key words (frame size?)
 titlekeywords:
@@ -22,6 +23,7 @@ bodykeywords:
 framesizes:
  - Small
  - S
+ - Medium
 
 min_frame: 15
 max_frame: 16.5

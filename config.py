@@ -1,7 +1,7 @@
 import yaml, os, sys
 from shutil import copyfile
 
-# ensure .agile-tracker folder exists and create if not
+# ensure .bikescraper-cl folder exists and create if not
 home = os.path.expanduser("~")
 localfolder = os.path.join(home, '.bikescraper-cl')
 if not os.path.exists(localfolder):

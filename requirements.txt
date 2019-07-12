@@ -1,0 +1,6 @@
+pyyaml
+pandas
+xlsxwriter
+progressbar2
+requests
+beautifulsoup4

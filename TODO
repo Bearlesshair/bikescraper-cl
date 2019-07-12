@@ -1,0 +1,26 @@
+Brainstorming:
+Query needs to handle multiple pages of results
+
+More error handling for requests
+
+Make all calls from bikescraper-cl.py
+
+Store listings fetched in JSON for comparison purposes (minimizes unnecessary post fetching)
+
+AND, OR, NOT config parsing
+
+Gmail sender
+
+Option to export-all or get-new
+
+
+Implementation changes:
+config.py -> New options to export changed/total and to send via gmail
+query.py -> Add multiple page results functionality
+DONE query.py -> Store fetched listings in dictionary -> Pass to get-changed.py -> Write all to JSON
+DONE get-changed.py -> Compare fetched with current JSON -> Return dictionary of changed listings
+query.py -> Return both total and changed dictionaries
+bikescraper-cl.py -> Either export total via excel.py OR Export changed via excel.py and send via gmail.py
+
+
+Multiple configurations???

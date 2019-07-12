@@ -3,6 +3,7 @@ import pandas, xlsxwriter, progressbar, datetime
 def export(storage):
     now = datetime.datetime.now()
     filename = "bikescrape-%d-%d-%d-%d%d%d" % (now.year, now.month, now.day, now.hour, now.minute, now.second)
+    print("Exporting to %s.xlsx" %filename)
     writer = pandas.ExcelWriter('%s.xlsx' % filename, engine='xlsxwriter')
     for city in storage:
         if storage[city] != []:     # ignore empty cities
