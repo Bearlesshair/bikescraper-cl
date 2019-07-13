@@ -18,7 +18,8 @@ def do(configpath):
 
             # set up request
             url_base = 'http://%s.craigslist.org/d/bicycles/search/bia%s' % (city, nearbyArea)
-            params = dict(sort='date', srchType='T', hasPic=1, query=configDict['query'], max_price=configDict['max_price'], min_price=configDict['min_price'])
+            # srchType='T'
+            params = dict(sort='date', hasPic=1, query=configDict['query'], max_price=configDict['max_price'], min_price=configDict['min_price'])
             headers = {
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
             "Accept-Encoding": "gzip, deflate, br",

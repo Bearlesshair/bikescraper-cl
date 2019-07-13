@@ -1,15 +1,37 @@
 # Search query
-query: "santa cruz"
+query: "27.5"
 
 # Cities/Regions to query
 cities:
-- eauclaire
 - denver
-#- denver
-#- portland
+- eauclaire
+- portland
+- grandisland
+- bismarck
+- chambana
+- joplin
+- muskegon
+- zanesville
+- nashville
+- pennstate
+- rochester
+- butte
+- jackson
+- columbusga
+- lynchburg
+- houston
+- odessa
+- delaware
+- fayetteville
+- showlow
+- provo
+- worcester
+- susanville
+- orlando
+- ventura
 
-min_price: 1200
-max_price: 4000
+min_price: 1000
+max_price: 2000
 
 # NOT case sensitive - Checks titles for these key words (frame size?)
 titlekeywords:
@@ -23,7 +45,6 @@ bodykeywords:
 framesizes:
  - Small
  - S
- - Medium
 
 min_frame: 15
 max_frame: 16.5
