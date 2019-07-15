@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b56429fb-bb84-4661-ac2a-bb333a8dc5ca" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bikescraper-cl.py" beforeDir="false" afterPath="$PROJECT_DIR$/bikescraper-cl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/excel.py" beforeDir="false" afterPath="$PROJECT_DIR$/excel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getchanged.py" beforeDir="false" afterPath="$PROJECT_DIR$/getchanged.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/post.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/query.py" beforeDir="false" afterPath="$PROJECT_DIR$/query.py" afterDir="false" />
     </list>
@@ -32,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/query.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+            <state relative-caret-position="510">
+              <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -47,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/post.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+            <state relative-caret-position="480">
+              <caret line="32" column="59" lean-forward="true" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -59,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+            <state relative-caret-position="330">
+              <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -109,6 +106,7 @@
       <find>19</find>
       <find>storage</find>
       <find>city</find>
+      <find>find_all</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,13 +124,13 @@
         <option value="$PROJECT_DIR$/smartdelay.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/TODO" />
         <option value="$PROJECT_DIR$/getchanged.py" />
         <option value="$PROJECT_DIR$/excel.py" />
         <option value="$PROJECT_DIR$/bikescraper-cl.py" />
-        <option value="$PROJECT_DIR$/config.yaml" />
+        <option value="$PROJECT_DIR$/TODO" />
         <option value="$PROJECT_DIR$/query.py" />
         <option value="$PROJECT_DIR$/post.py" />
+        <option value="$PROJECT_DIR$/config.yaml" />
       </list>
     </option>
   </component>
@@ -319,7 +317,7 @@
       <workItem from="1563202470169" duration="124000" />
       <workItem from="1563202679217" duration="5506000" />
       <workItem from="1563215568230" duration="38000" />
-      <workItem from="1563224192477" duration="248000" />
+      <workItem from="1563224192477" duration="5361000" />
     </task>
     <task id="LOCAL-00001" summary="Add progress bars, update regions, remove debug and delay messages.&#10;Progress bars added in place of delay messages, regions now include&#10;nearby areas, debug print messages removed.">
       <created>1562863147487</created>
@@ -356,11 +354,25 @@
       <option name="project" value="LOCAL" />
       <updated>1563207665919</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Change listing storage structure to match excel output.&#10;Listings now have city stored in &quot;Region&quot; field rather than&#10;having separate city dictionaries for each set of listings from a city.&#10;This is consistent with the excel output, code is cleaner, and fixes&#10;bug where results are missing from spreadsheet.">
+      <created>1563224531097</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1563224531097</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add multiple results pages support.&#10;Now can fetch more than one page of results from Craigslist&#10;(greater than 120 listings).">
+      <created>1563231573249</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1563231573249</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57117000" />
+    <option name="totallyTimeSpent" value="62230000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="27" width="1850" height="1053" extended-state="6" />
@@ -398,7 +410,9 @@
     <MESSAGE value="Add connection error pause and retry functionality." />
     <MESSAGE value="Add JSON store and comparison functionality, add requirements.txt&#10;Upon fetching listings compares against the last fetch to prevent from&#10;re-fetching individual posts that have already been checked and allows&#10;for getting only the new postings.  Saves fetches in total.json stored&#10;in .bikescraper-cl folder." />
     <MESSAGE value="Change request error handling behavior.&#10;Accept broader range of exceptions (ConnectionError, requests.exceptions.RequestException)&#10;Remove redundancy." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change request error handling behavior.&#10;Accept broader range of exceptions (ConnectionError, requests.exceptions.RequestException)&#10;Remove redundancy." />
+    <MESSAGE value="Change listing storage structure to match excel output.&#10;Listings now have city stored in &quot;Region&quot; field rather than&#10;having separate city dictionaries for each set of listings from a city.&#10;This is consistent with the excel output, code is cleaner, and fixes&#10;bug where results are missing from spreadsheet." />
+    <MESSAGE value="Add multiple results pages support.&#10;Now can fetch more than one page of results from Craigslist&#10;(greater than 120 listings)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add multiple results pages support.&#10;Now can fetch more than one page of results from Craigslist&#10;(greater than 120 listings)." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/bikescraper_cl$query.coverage" NAME="query Coverage Results" MODIFIED="1562785302311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -466,38 +480,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/getchanged.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sender.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TODO">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -518,13 +504,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TODO">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="38" column="30" lean-forward="true" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/getchanged.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/post.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="53" column="56" selection-start-line="53" selection-start-column="56" selection-end-line="53" selection-end-column="56" />
+        <state relative-caret-position="480">
+          <caret line="32" column="59" lean-forward="true" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="8" lean-forward="true" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
         </state>
       </provider>
     </entry>

@@ -12,21 +12,22 @@ def frameFits(soup, framesizes, min_frame, max_frame):
 
     # extract frame size
     attributes = soup.find('p', {'class': 'attrgroup'})
-    for attr in attributes.find_all('span'):
-        if "frame size: " in attr.text:
-            frameSize = attr.text[12:].lower()
-            if frameSize in framesizes:     # case for if frame size is words and contained in valid frame size list
-                return True
-            else:
-                try:
-                    frameFloat = float(frameSize)
-                    if frameFloat >= min_frame and frameFloat <= max_frame:
-                        return True     # frame size is float and within range
-                    else:
-                        return False       # frame size is float and outside range
-                except:
-                    return False    # Frame size IS words but not contained in framesizes list
-    return True     # no frame size attribute, will not exclude post
+    if attributes is not None:
+        for attr in attributes.find_all('span'):
+            if "frame size: " in attr.text:
+                frameSize = attr.text[12:].lower()
+                if frameSize in framesizes:     # case for if frame size is words and contained in valid frame size list
+                    return True
+                else:
+                    try:
+                        frameFloat = float(frameSize)
+                        if frameFloat >= min_frame and frameFloat <= max_frame:
+                            return True     # frame size is float and within range
+                        else:
+                            return False       # frame size is float and outside range
+                    except:
+                        return False    # Frame size IS words but not contained in framesizes list
+    return True     # no frame size attribute or no attributes at all, will not exclude post
 
 def checkTitle(soup, titlekeywords):
     title = soup.find('span', {'id': 'titletextonly'}).text

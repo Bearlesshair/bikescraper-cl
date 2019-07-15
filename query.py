@@ -21,14 +21,13 @@ def do(configDict):
                 "Upgrade-Insecure-Requests": "1",
                 "User-Agent": "user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
             }
-
-            while True:
+            print("Fetching region: %s" % city)
+            while True:     # loop to check for more than one page of results
                 # set up request
                 url_base = 'http://%s.craigslist.org/d/bicycles/search/bia%s' % (city, nearbyArea)
                 # srchType='T'
                 # make search request and parse with beautiful soup
-                print("Fetching region: %s" % city)
-                while True:
+                while True:     # loop to allow continuation when exceptions caught
                     try:
                         rsp = requests.get(url=url_base, params=params, headers=headers)
                     except (ConnectionError, requests.exceptions.RequestException) as e:
@@ -44,10 +43,11 @@ def do(configDict):
                     link = listing.find('a')['href']
                     total.append(dict(Listing=title, Price=price, Link=link, Region=city.title()))
                 delay(2, 100)
-                if soup.find('a', {'class': 'button next'})['href'] == '':
+                nextpage = soup.find('a', {'class': 'button next'})
+                if nextpage is None or nextpage['href'] == '':      # nextpage None for no results found, '' for 1 page
                     break
                 params['s'] += 120
-
+                print("Fetching page %d for region: %s" % (int(params['s']/120+1), city))
     jsonname = os.path.join(os.path.expanduser("~"), '.bikescraper-cl', 'total.json')
     changed = getchanged.compare(total, jsonname)
 
