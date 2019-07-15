@@ -9,10 +9,9 @@ def do(configDict):
     with open('regions.yaml', 'r') as f:
         regions = yaml.safe_load(f)
 
-    total = {}
+    total = []
     for city, nearbyArea in regions.items():
         if city in configDict['cities']:
-            total[city] = []    # save city to total storage and create empty list
 
             # set up request
             url_base = 'http://%s.craigslist.org/d/bicycles/search/bia%s' % (city, nearbyArea)
@@ -32,8 +31,8 @@ def do(configDict):
                 try:
                     rsp = requests.get(url=url_base, params=params, headers=headers)
                 except (ConnectionError, requests.exceptions.RequestException) as e:
-                    print("Connection error, pausing requests ~10s...")
-                    delay(10, 10)
+                    print("\nConnection error, pausing requests ~5s...")
+                    delay(5, 10)
                     continue
                 break
             soup = bs(rsp.text, 'html.parser')
@@ -42,7 +41,7 @@ def do(configDict):
                 title = listing.find('p').find('a').text
                 price = listing.find('span', {'class': 'result-price'}).text
                 link = listing.find('a')['href']
-                total[city].append(dict(Listing=title, Price=price, Link=link, Region=city.title()))
+                total.append(dict(Listing=title, Price=price, Link=link, Region=city.title()))
             delay(2, 100)
 
     jsonname = os.path.join(os.path.expanduser("~"), '.bikescraper-cl', 'total.json')
@@ -53,18 +52,16 @@ def do(configDict):
         json.dump(total, json_file)
 
     # check individual postings for each region
-    relevant = {}
-    for city in changed:
-        relevant[city] = []
-        if changed[city] == []:
-            print("No new listings in %s" % city)
-        else:
-            print("Checking posts in region: %s" % city)
-            for listing in progressbar.progressbar(changed[city]):
-                if post.check(listing['Link'], configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'],
-                              configDict['min_frame'], configDict['max_frame']):
-                    relevant[city].append(listing)
-                delay(0.4, 100)
+    relevant = []
+    if changed == []:
+        print("No new listings.")
+    else:
+        print("Checking posts...")
+        for listing in progressbar.progressbar(changed):
+            if post.check(listing['Link'], configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'],
+                          configDict['min_frame'], configDict['max_frame']):
+                relevant.append(listing)
+            delay(0.4, 100)
 
     print("Completed query for: ", configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'], configDict['min_frame'], configDict['max_frame'])
 

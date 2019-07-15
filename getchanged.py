@@ -11,15 +11,10 @@ def compare(newtotal, oldtotalfilename):
     except FileNotFoundError:
         return newtotal     # no total.json file exists yet, all listings are changed listings
 
-    changed = {}
+    changed = []
 
-    for city in newtotal:
-        if city not in oldtotal:
-            changed[city] = newtotal[city]
-        else:
-            changed[city] = []
-            for listing in newtotal[city]:
-                if listing not in oldtotal[city]:
-                    changed[city].append(listing)
+    for listing in newtotal:
+        if listing not in oldtotal:
+            changed.append(listing)
 
     return changed
