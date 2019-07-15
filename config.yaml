@@ -48,3 +48,9 @@ framesizes:
 
 min_frame: 15
 max_frame: 16.5
+
+# Options to send email with spreadsheet
+sendemail: True
+botuser: 'bikescraperbot'
+botpassword: 'Toastisgood007'
+toemail: 'ncflorentius@gmail.com'
