@@ -31,7 +31,7 @@ def do(configDict):
             while True:
                 try:
                     rsp = requests.get(url=url_base, params=params, headers=headers)
-                except (ConnectionError, ConnectionAbortedError, ConnectionRefusedError, ConnectionResetError) as e:
+                except (ConnectionError, requests.exceptions.RequestException) as e:
                     print("Connection error, pausing requests ~10s...")
                     delay(10, 10)
                     continue

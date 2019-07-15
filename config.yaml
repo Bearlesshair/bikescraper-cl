@@ -3,32 +3,32 @@ query: "27.5"
 
 # Cities/Regions to query
 cities:
-#- denver
+- denver
 - eauclaire
-#- portland
-#- grandisland
-#- bismarck
-#- chambana
-#- joplin
-#- muskegon
-#- zanesville
-#- nashville
-#- pennstate
-#- rochester
-#- butte
-#- jackson
-#- columbusga
-#- lynchburg
-#- houston
-#- odessa
-#- delaware
-#- fayetteville
-#- showlow
-#- provo
-#- worcester
-#- susanville
-#- orlando
-#- ventura
+- portland
+- grandisland
+- bismarck
+- chambana
+- joplin
+- muskegon
+- zanesville
+- nashville
+- pennstate
+- rochester
+- butte
+- jackson
+- columbusga
+- lynchburg
+- houston
+- odessa
+- delaware
+- fayetteville
+- showlow
+- provo
+- worcester
+- susanville
+- orlando
+- ventura
 
 min_price: 1000
 max_price: 2000
@@ -50,7 +50,7 @@ min_frame: 15
 max_frame: 16.5
 
 # Options to send email with spreadsheet
-sendemail: True
+sendemail: False
 botuser: 'bikescraperbot'
 botpassword: 'Toastisgood007'
 toemail: 'ncflorentius@gmail.com'

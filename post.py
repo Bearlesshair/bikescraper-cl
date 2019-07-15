@@ -50,7 +50,7 @@ def check(url, titlekeywords, bodykeywords, framesizes, min_frame, max_frame):
     while True:
         try:
             rsp = requests.get(url=url, headers=headers)
-        except (ConnectionError, ConnectionAbortedError, ConnectionRefusedError, ConnectionResetError) as e:
+        except (ConnectionError, requests.exceptions.RequestException) as e:
             print("Connection error, pausing requests ~10s...")
             delay(10, 10)
             continue

@@ -4,3 +4,4 @@ xlsxwriter
 progressbar2
 requests
 beautifulsoup4
+gmail

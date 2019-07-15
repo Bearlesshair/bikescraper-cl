@@ -15,6 +15,8 @@ storage = query.do(configDict)
 # export to excel file if new relevant listings
 excelfile = excel.export(storage)
 
+print(storage)
+
 # if excelfile is not empty and gmail option enabled, send spreadsheet
 if configDict['sendemail'] is True and excelfile is not None:
     print("Emailing spreadsheet to %s" % configDict['toemail'])
