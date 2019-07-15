@@ -1,13 +1,11 @@
 import requests, yaml, progressbar, json, os
 from bs4 import BeautifulSoup as bs
 # Homemade Modules
-import config, post, getchanged
+import post, getchanged
 from smartdelay import delay
 
 
-def do(configpath):
-    configDict = config.get(configpath)
-
+def do(configDict):
     with open('regions.yaml', 'r') as f:
         regions = yaml.safe_load(f)
 
@@ -29,18 +27,25 @@ def do(configpath):
                        }
 
             # make search request and parse with beautiful soup
-            rsp = requests.get(url=url_base, params=params, headers=headers)
             print("Fetching region: %s" % city)
+            while True:
+                try:
+                    rsp = requests.get(url=url_base, params=params, headers=headers)
+                except (ConnectionError, ConnectionAbortedError, ConnectionRefusedError, ConnectionResetError) as e:
+                    print("Connection error, pausing requests ~10s...")
+                    delay(10, 10)
+                    continue
+                break
             soup = bs(rsp.text, 'html.parser')
             print(rsp.url)
             for listing in soup.find_all('li', {'class': 'result-row'}):
                 title = listing.find('p').find('a').text
                 price = listing.find('span', {'class': 'result-price'}).text
                 link = listing.find('a')['href']
-                total[city].append(dict(Listing=title, Price=price, Link=link))
+                total[city].append(dict(Listing=title, Price=price, Link=link, Region=city.title()))
             delay(2, 100)
 
-    jsonname = os.path.join(config.localfolder, "total.json")
+    jsonname = os.path.join(os.path.expanduser("~"), '.bikescraper-cl', 'total.json')
     changed = getchanged.compare(total, jsonname)
 
     # save total to JSON
