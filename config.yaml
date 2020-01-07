@@ -1,5 +1,5 @@
 # Search query
-query: "27.5"
+query: ""
 
 # Cities/Regions to query
 cities:
@@ -30,24 +30,12 @@ cities:
 - orlando
 - ventura
 
-min_price: 1000
-max_price: 2000
+min_price:
+max_price:
 
 # NOT case sensitive - Checks titles for these key words (frame size?)
-titlekeywords:
+auto_make_model: Volvo 240|242|244|245
 
-
-# NOT case sensitive - Checks bodies for these key words
-bodykeywords:
-
-
-# NOT case sensitive - Checks attributes for these frame sizes
-framesizes:
- - Small
- - S
-
-min_frame: 15
-max_frame: 16.5
 
 # Options to send email with spreadsheet
 sendemail: False

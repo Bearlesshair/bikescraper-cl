@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as bs
 # Homemade Modules
 import post, getchanged
 from smartdelay import delay
-
+# TODO: Add fields to output: Transmission, Engine, Bodystyle, mileage, year, sellertype, title
 
 def do(configDict):
     with open('regions.yaml', 'r') as f:
@@ -13,7 +13,7 @@ def do(configDict):
     for city, nearbyArea in regions.items():
         if city in configDict['cities']:
             params = dict(sort='date', hasPic=1, query=configDict['query'], max_price=configDict['max_price'],
-                          min_price=configDict['min_price'], s=0)
+                          min_price=configDict['min_price'], s=0, auto_make_model=configDict['auto_make_model'])
             headers = {
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
                 "Accept-Encoding": "gzip, deflate, br",
@@ -24,7 +24,7 @@ def do(configDict):
             print("Fetching region: %s" % city)
             while True:     # loop to check for more than one page of results
                 # set up request
-                url_base = 'http://%s.craigslist.org/d/bicycles/search/bia%s' % (city, nearbyArea)
+                url_base = 'http://%s.craigslist.org/search/cta%s' % (city, nearbyArea)
                 # srchType='T'
                 # make search request and parse with beautiful soup
                 while True:     # loop to allow continuation when exceptions caught
@@ -62,11 +62,10 @@ def do(configDict):
     else:
         print("Checking posts...")
         for listing in progressbar.progressbar(changed):
-            if post.check(listing['Link'], configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'],
-                          configDict['min_frame'], configDict['max_frame']):
+            if post.check(listing['Link']):
                 relevant.append(listing)
             delay(0.4, 100)
 
-    print("Completed query for: ", configDict['titlekeywords'], configDict['bodykeywords'], configDict['framesizes'], configDict['min_frame'], configDict['max_frame'])
+    print("Completed query for: ", configDict['auto_make_model'])
 
     return relevant
