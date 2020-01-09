@@ -3,9 +3,9 @@ from bs4 import BeautifulSoup as bs
 # Homemade Modules
 import post, getchanged
 from smartdelay import delay
-# TODO: Add fields to output: Transmission, Engine, Bodystyle, mileage, year, sellertype, title
 
-def do(configDict):
+
+def do(configDict, filename='total'):
     with open('regions.yaml', 'r') as f:
         regions = yaml.safe_load(f)
 
@@ -40,15 +40,18 @@ def do(configDict):
                 for listing in soup.find_all('li', {'class': 'result-row'}):
                     title = listing.find('p').find('a').text
                     price = listing.find('span', {'class': 'result-price'}).text
+                    date = listing.find('time', {'class': 'result-date'})['datetime']
                     link = listing.find('a')['href']
-                    total.append(dict(Listing=title, Price=price, Link=link, Region=city.title()))
+                    tags = dict(listing=title, price=price, link=link, region=city.title(), date=date)
+                    tags.update(post.add_tags(link))
+                    total.append(tags)
                 delay(2, 100)
                 nextpage = soup.find('a', {'class': 'button next'})
                 if nextpage is None or nextpage['href'] == '':      # nextpage None for no results found, '' for 1 page
                     break
                 params['s'] += 120
                 print("Fetching page %d for region: %s" % (int(params['s']/120+1), city))
-    jsonname = os.path.join(os.path.expanduser("~"), '.bikescraper-cl', 'total.json')
+    jsonname = os.path.join(os.path.expanduser("~"), '.carscraper-cl', filename + '.json')
     changed = getchanged.compare(total, jsonname)
 
     # save total to JSON
@@ -56,16 +59,16 @@ def do(configDict):
         json.dump(total, json_file)
 
     # check individual postings for each region
-    relevant = []
-    if changed == []:
-        print("No new listings.")
-    else:
-        print("Checking posts...")
-        for listing in progressbar.progressbar(changed):
-            if post.check(listing['Link']):
-                relevant.append(listing)
-            delay(0.4, 100)
-
+    # relevant = []
+    # if changed == []:
+    #     print("No new listings.")
+    # else:
+    #     print("Checking posts...")
+    #     for listing in progressbar.progressbar(changed):
+    #         if post.check(listing['link']):
+    #             relevant.append(listing)
+    #         delay(0.4, 100)
+    #
     print("Completed query for: ", configDict['auto_make_model'])
 
-    return relevant
+    return changed
