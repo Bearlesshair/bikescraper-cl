@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="carscraper-cl",
-    version="0.1.0",
+    version="0.6.2",
     author="Nick Florentius",
     description="Scrapes information for cars from craigslist",
     long_description=long_description,
@@ -17,4 +17,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.7',
+    install_requires=['pyyaml, pandas, xlsxwriter, progressbar2, requests, beautifulsoup4, gmail']
 )

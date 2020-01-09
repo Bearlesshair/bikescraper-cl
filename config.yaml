@@ -33,8 +33,6 @@ cities:
 min_price:
 max_price:
 
-# NOT case sensitive - Checks titles for these key words (frame size?)
-auto_make_model: Volvo 240|242|244|245
 
 
 # Options to send email with spreadsheet
