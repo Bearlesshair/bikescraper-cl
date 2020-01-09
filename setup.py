@@ -17,5 +17,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.7',
-    install_requires=['pyyaml, pandas, xlsxwriter, progressbar2, requests, beautifulsoup4, gmail']
+    install_requires=['pyyaml', 'pandas', 'xlsxwriter', 'progressbar2', 'requests', 'beautifulsoup4', 'gmail']
 )
